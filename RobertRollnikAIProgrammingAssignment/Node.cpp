@@ -15,3 +15,8 @@ void Node::Draw(std::shared_ptr<Surface> screen)
 {
 	thenodessurface->blit(screen, x, y);
 }
+
+void Node::addNeighbour(Node* neighbour)
+{
+	neighbours.push_back(neighbour);
+}

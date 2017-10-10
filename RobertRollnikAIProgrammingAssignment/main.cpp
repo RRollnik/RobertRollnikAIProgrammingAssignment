@@ -18,37 +18,40 @@
 #define GRID_HEIGHT 25
 #define GRID_WIDTH 25
 
-void BreadthFirstSearch(std::vector<Node> search, Node start, Node goal)
+/*void BreadthFirstSearch(std::vector<Node> search, Node start, Node goal)
 {
-	std::vector<Node*> Path;
-	std::vector<Node> Open;
-	std::vector<Node> Close;
+std::vector<Node> Path;
+std::vector<Node> Open;
+std::vector<Node> Close;
 
-	Open.push_back(start);
-	Close.push_back(start);
+Open.push_back(start);
+Close.push_back(start);
 
-	bool goalnode = false;
+bool goalnode = false;
 
-	while (!(Open.empty) || goalnode)
-	{
-		Node currentNode = Open.front();
+while (!Open.empty || goalnode)
+{
+Node currentNode = Open.front();
 
-		for (std::vector<Node>::iterator count = search.begin(); count != search.end(); count++)
-		{
-			if (currentNode.GetX, currentNode.GetY == goal)
-			{
-				goalnode = true;
-				break;
-			}
-
-			else
-			{
-
-			}
-		}
-	}
-	//return *Path;
+for (std::vector<Node>::iterator count = search.begin(); count != search.end(); count++)
+{
+if (currentNode.GetX, currentNode.GetY == goal)
+{
+goalnode = true;
+break;
 }
+
+else
+{
+Path.push_back(currentNode);
+}
+Close.push_back(currentNode);
+}
+
+
+}
+return ;
+}*/
 
 int main(int argc, char *argv[])
 {
@@ -90,7 +93,7 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	std::vector<Node*> grid;
+	//adding neighbours
 
 	size_t i = 0;
 
@@ -98,7 +101,37 @@ int main(int argc, char *argv[])
 	{
 		for (size_t x = 0; x < Grid_Width; x++)
 		{
-			Node* curr = grid.at(i);
+			Node* curr = &nodes.at(i);
+
+			if (x == 0)
+			{
+				curr->addNeighbour(curr + 1);
+			}
+			else if (x == GRID_WIDTH - 1)
+			{
+				curr->addNeighbour(curr - 1);
+			}
+			else
+			{
+				curr->addNeighbour(curr - 1);
+				curr->addNeighbour(curr + 1);
+			}
+
+			if (y == 0)
+			{
+				curr->addNeighbour(curr + 1);
+			}
+			else if (y == GRID_HEIGHT - 1)
+			{
+				curr->addNeighbour(curr - 1);
+			}
+			else
+			{
+				curr->addNeighbour(curr - 1);
+				curr->addNeighbour(curr + 1);
+			}
+
+			i++;
 		}
 	}
 
