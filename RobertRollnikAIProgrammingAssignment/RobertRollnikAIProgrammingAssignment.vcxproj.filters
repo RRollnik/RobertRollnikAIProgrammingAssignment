@@ -21,10 +21,10 @@
     <ClInclude Include="Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Breadth First Algorithm.h">
+    <ClInclude Include="DepthFirstAlgorithm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DepthFirstAlgorithm.h">
+    <ClInclude Include="BreadthFirstAlgorithm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -38,10 +38,10 @@
     <ClCompile Include="Surface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Breadth First Algorithm.cpp">
+    <ClCompile Include="DepthFirstAlgorithm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DepthFirstAlgorithm.h.cpp">
+    <ClCompile Include="BreadthFirstAlgorithm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

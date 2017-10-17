@@ -9,7 +9,7 @@
 class BreadthFirst
 {
 public:
-	void BreadthFirstSearch(std::vector<Node> search, Node* start, Node* goal);
+	void BreadthFirstSearch(/*std::vector<Node> search,*/ Node* start, Node* goal);
 
 private:
 	//Vectors for storing the nodes to make the path, nodes visited and nodes not visited 

@@ -14,6 +14,7 @@
 
 #include "Surface.h"
 #include "Node.h"
+#include "BreadthFirstAlgorithm.h"
 
 #define GRID_HEIGHT 25
 #define GRID_WIDTH 25
@@ -22,6 +23,7 @@
 
 int main(int argc, char *argv[])
 {
+	BreadthFirst Algor;
 	std::shared_ptr<Surface> image;
 	//makes a surface called image
 
@@ -33,7 +35,7 @@ int main(int argc, char *argv[])
 
 	screen = Surface::setVideoMode();
 
-	image = Surface::loadBmp("node.bmp");
+	image = Surface::loadBmp("notvisitednode.bmp");
 	int imageHeight = 50;
 	int imageWidth = 50;
 
@@ -41,6 +43,7 @@ int main(int argc, char *argv[])
 	int Grid_Height = 720 / imageHeight;
 	//numbers control the number of nodes we'll make so that they don't go beyond the screens borders
 
+	//Generate the grid
 	std::vector<Node> nodes;
 	//generate a vector of our Node class
 
@@ -108,6 +111,9 @@ int main(int argc, char *argv[])
 		}
 	}
 
+	Algor.BreadthFirstSearch(&nodes.at(10), &nodes.at(15));
+
+	//Draws the grid to the scren
 	for (size_t i = 0; i < nodes.size(); i++)
 	{
 		nodes.at(i).Draw(screen);

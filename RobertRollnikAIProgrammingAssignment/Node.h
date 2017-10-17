@@ -31,6 +31,8 @@ private:
 	int row;
 
 	std::shared_ptr <Surface> thenodessurface;
+
+public:
 	std::vector<Node *> neighbours;
 };
 
