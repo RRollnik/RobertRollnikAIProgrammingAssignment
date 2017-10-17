@@ -115,10 +115,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Breadth First Algorithm.h" />
+    <ClInclude Include="DepthFirstAlgorithm.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Surface.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Breadth First Algorithm.cpp" />
+    <ClCompile Include="DepthFirstAlgorithm.h.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Surface.cpp" />

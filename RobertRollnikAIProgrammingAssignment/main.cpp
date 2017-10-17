@@ -18,41 +18,7 @@
 #define GRID_HEIGHT 25
 #define GRID_WIDTH 25
 
-void BreadthFirstSearch(std::vector<Node> search, Node* start, Node* goal)
-{
-std::vector<Node*> Path;
-std::vector<Node*> Open;
-std::vector<Node*> Close;
 
-Open.push_back(start);
-Close.push_back(start);
-
-bool goalnode = false;
-
-while (!Open.empty() || goalnode)
-{
-	Node* currentNode = Open.front();
-	
-	for (std::vector<Node>::iterator count = search.begin(); count != search.end(); count++)
-	{
-		if (currentNode == goal)
-		{
-			goalnode = true;
-			break;
-		}
-
-		else
-		{
-			Path.push_back(currentNode);
-		}
-		
-		Close.push_back(currentNode);
-	}
-
-
-}
-return ;
-}
 
 int main(int argc, char *argv[])
 {
@@ -94,7 +60,13 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	//adding neighbours
+	//Adds the function to the grid to know of its neighbours
+	//Nested loop traverses the grid adding neighnours to the top, bottom, left and right
+	//Neighbours are added by adding and subtracting 1 from the grid width and height as this represents the position of the neighbouting nodes
+	/*Add diagonals
+		Try not to cry, cry a lot and then kill yours self because its too much for my tiny stupid brain to understand but
+		its too essencial then ask someone how knows how to do this stuff*/
+	/*Move to class????*/
 
 	size_t i = 0;
 
