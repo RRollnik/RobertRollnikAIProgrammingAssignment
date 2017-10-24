@@ -23,8 +23,12 @@
 
 int main(int argc, char *argv[])
 {
-	BreadthFirst Algor;
-	std::shared_ptr<Surface> image;
+	BreadthFirst searchpath;
+
+	std::shared_ptr<Surface> notvisitednde;
+	std::shared_ptr<Surface> goalnode;
+	std::shared_ptr<Surface> startnode;
+	std::shared_ptr<Surface> pathnode;
 	//makes a surface called image
 
 	std::shared_ptr<Surface> screen;
@@ -35,7 +39,8 @@ int main(int argc, char *argv[])
 
 	screen = Surface::setVideoMode();
 
-	image = Surface::loadBmp("notvisitednode.bmp");
+	notvisitednde = Surface::loadBmp("notvisitednode.bmp");
+
 	int imageHeight = 50;
 	int imageWidth = 50;
 
@@ -47,11 +52,15 @@ int main(int argc, char *argv[])
 	std::vector<Node> nodes;
 	//generate a vector of our Node class
 
+	Node* goal;
+	Node* start;
+
+
 	for (size_t y = 0; y < Grid_Height; y++)
 	{
 		for (size_t x = 0; x < Grid_Width; x++)
 		{
-			Node node(image, (y + 1), (x + 1));
+			Node node(notvisitednde, (y + 1), (x + 1));
 			//makes a node, passes in 'image' which is the nodes texture representation, also the x and y, which we'll use as the column and row, hence why we add 1 to each, so that 0 becomes 1 etc
 
 			node.SetX(x * 50);
@@ -66,10 +75,12 @@ int main(int argc, char *argv[])
 	//Adds the function to the grid to know of its neighbours
 	//Nested loop traverses the grid adding neighnours to the top, bottom, left and right
 	//Neighbours are added by adding and subtracting 1 from the grid width and height as this represents the position of the neighbouting nodes
-	/*Add diagonals
-		Try not to cry, cry a lot and then kill yours self because its too much for my tiny stupid brain to understand but
-		its too essencial then ask someone how knows how to do this stuff*/
-	/*Move to class????*/
+
+
+	/*
+	*Add functionality to draw the path found
+	*/
+
 
 	size_t i = 0;
 
@@ -95,23 +106,80 @@ int main(int argc, char *argv[])
 
 			if (y == 0)
 			{
-				curr->addNeighbour(curr + 1);
+				curr->addNeighbour(curr + GRID_WIDTH);
 			}
 			else if (y == GRID_HEIGHT - 1)
 			{
-				curr->addNeighbour(curr - 1);
+				curr->addNeighbour(curr - GRID_WIDTH);
 			}
 			else
 			{
-				curr->addNeighbour(curr - 1);
-				curr->addNeighbour(curr + 1);
+				curr->addNeighbour(curr - GRID_WIDTH);
+				curr->addNeighbour(curr + GRID_WIDTH);
 			}
 
+			// Middle
+			if (x != 0 && y != 0 && x != GRID_WIDTH - 1 && y != GRID_HEIGHT - 1)
+			{
+				curr->addNeighbour(curr - GRID_WIDTH - 1);
+				curr->addNeighbour((curr - GRID_WIDTH) + 1);
+				curr->addNeighbour(curr + GRID_WIDTH - 1);
+				curr->addNeighbour((curr + GRID_WIDTH) + 1);
+			}// Top Left
+			else if (x == 0 && y == 0)
+			{
+				curr->addNeighbour((curr + GRID_WIDTH) + 1);
+			}// Top Right
+			else if (x == GRID_WIDTH - 1 && y == 0)
+			{
+				curr->addNeighbour((curr + GRID_WIDTH) - 1);
+			}// Bottom Left
+			else if (x == 0 && y == GRID_HEIGHT - 1)
+			{
+				curr->addNeighbour((curr - GRID_WIDTH) + 1);
+			}// Bottom Right
+			else if (x == GRID_WIDTH - 1 && y == GRID_HEIGHT - 1)
+			{
+				curr->addNeighbour((curr - GRID_WIDTH) - 1);
+			}// Left
+			else if (x == 0)
+			{
+				curr->addNeighbour((curr + GRID_WIDTH) + 1);
+				curr->addNeighbour((curr - GRID_WIDTH) + 1);
+			}// Right
+			else if (x == GRID_WIDTH - 1)
+			{
+				curr->addNeighbour((curr + GRID_WIDTH) - 1);
+				curr->addNeighbour((curr - GRID_WIDTH) - 1);
+			}// Top
+			else if (y == 0)
+			{
+				curr->addNeighbour((curr + GRID_WIDTH) - 1);
+				curr->addNeighbour((curr + GRID_WIDTH) + 1);
+			}// Bottom
+			else if (y == GRID_HEIGHT - 1)
+			{
+				curr->addNeighbour((curr - GRID_WIDTH) - 1);
+				curr->addNeighbour((curr - GRID_WIDTH) + 1);
+			}
 			i++;
 		}
 	}
 
-	Algor.BreadthFirstSearch(&nodes.at(10), &nodes.at(15));
+	goal = &nodes.at(2);
+	start = &nodes.at(200);
+
+	searchpath.BreadthFirstSearch(start, goal);
+
+	Node* curr = goal;
+
+	while (curr)
+	{
+		std::cout << curr->GetX() << " " << curr->GetY() << std::endl;
+		std::vector<Node*> path;
+		curr = curr->parent;
+		path.push_back(curr);
+	}
 
 	//Draws the grid to the scren
 	for (size_t i = 0; i < nodes.size(); i++)

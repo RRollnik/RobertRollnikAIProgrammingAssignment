@@ -5,6 +5,7 @@ Node::Node(std::shared_ptr <Surface> thenodessurface, int column, int row)
 	this->thenodessurface = thenodessurface;
 	this->column = column;
 	this->row = row;
+	parent = NULL;
 }
 
 Node::~Node()

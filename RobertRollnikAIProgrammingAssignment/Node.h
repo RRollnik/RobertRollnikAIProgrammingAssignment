@@ -22,6 +22,8 @@ public:
 
 	void addNeighbour(Node* neighbour);
 
+	Node* parent;
+
 private:
 	//position, scope, draw node or put on screen, etc
 	int y;

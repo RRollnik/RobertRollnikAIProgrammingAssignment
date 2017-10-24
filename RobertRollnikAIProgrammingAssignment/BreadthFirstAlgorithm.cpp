@@ -39,10 +39,11 @@ void BreadthFirst::BreadthFirstSearch(/*std::vector<Node> search,*/ Node* start,
 
 			if (found == false)
 			{
+				N->parent = currentNode;
 				Open.push_back(N);
 			}
 		}
-		
+
 		if (currentNode == goal)
 		{
 			goalnode = true;
