@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
 	screen = Surface::setVideoMode();
 
 	notvisitednde = Surface::loadBmp("notvisitednode.bmp");
+	pathnode = Surface::loadBmp("path.bmp");
 
 	int imageHeight = 50;
 	int imageWidth = 50;
@@ -54,6 +55,8 @@ int main(int argc, char *argv[])
 
 	Node* goal;
 	Node* start;
+	std::vector<Node*> path;
+
 
 
 	for (size_t y = 0; y < Grid_Height; y++)
@@ -166,20 +169,26 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	goal = &nodes.at(2);
-	start = &nodes.at(200);
+	goal = &nodes.at(24);
+	start = &nodes.at(349);
 
 	searchpath.BreadthFirstSearch(start, goal);
 
 	Node* curr = goal;
 
-	while (curr)
+	while (curr->GetParent())
 	{
 		std::cout << curr->GetX() << " " << curr->GetY() << std::endl;
-		std::vector<Node*> path;
-		curr = curr->parent;
 		path.push_back(curr);
+		curr = curr->GetParent();
 	}
+
+	for (size_t i = 0; i < path.size(); i++)
+	{
+		path.at(i)->SetImage(pathnode);
+	}
+
+	start->SetImage(pathnode);
 
 	//Draws the grid to the scren
 	for (size_t i = 0; i < nodes.size(); i++)

@@ -39,7 +39,7 @@ void BreadthFirst::BreadthFirstSearch(/*std::vector<Node> search,*/ Node* start,
 
 			if (found == false)
 			{
-				N->parent = currentNode;
+				N->SetParent(currentNode);
 				Open.push_back(N);
 			}
 		}
