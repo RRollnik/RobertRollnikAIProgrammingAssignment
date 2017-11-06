@@ -11,6 +11,7 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <time.h> 
 
 #include "Surface.h"
 #include "Node.h"
@@ -29,6 +30,7 @@ int main(int argc, char *argv[])
 	std::shared_ptr<Surface> goalnode;
 	std::shared_ptr<Surface> startnode;
 	std::shared_ptr<Surface> pathnode;
+	std::shared_ptr<Surface> blockade;
 	//makes a surface called image
 
 	std::shared_ptr<Surface> screen;
@@ -41,6 +43,9 @@ int main(int argc, char *argv[])
 
 	notvisitednde = Surface::loadBmp("notvisitednode.bmp");
 	pathnode = Surface::loadBmp("path.bmp");
+	goalnode = Surface::loadBmp("goalnode.bmp");
+	startnode = Surface::loadBmp("startnode.bmp");
+	blockade = Surface::loadBmp("blockade.bmp");
 
 	int imageHeight = 50;
 	int imageWidth = 50;
@@ -53,11 +58,11 @@ int main(int argc, char *argv[])
 	std::vector<Node> nodes;
 	//generate a vector of our Node class
 
+	int randGoal;
+	int randStart;
 	Node* goal;
 	Node* start;
 	std::vector<Node*> path;
-
-
 
 	for (size_t y = 0; y < Grid_Height; y++)
 	{
@@ -78,12 +83,6 @@ int main(int argc, char *argv[])
 	//Adds the function to the grid to know of its neighbours
 	//Nested loop traverses the grid adding neighnours to the top, bottom, left and right
 	//Neighbours are added by adding and subtracting 1 from the grid width and height as this represents the position of the neighbouting nodes
-
-
-	/*
-	*Add functionality to draw the path found
-	*/
-
 
 	size_t i = 0;
 
@@ -169,8 +168,14 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	goal = &nodes.at(24);
-	start = &nodes.at(349);
+
+	
+	srand(time(NULL));
+	randGoal = rand() % 349 + 0;
+	randStart = rand() % 349 + 0;
+
+	goal = &nodes.at(randGoal);
+	start = &nodes.at(randStart);
 
 	searchpath.BreadthFirstSearch(start, goal);
 
