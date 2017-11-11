@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 	std::shared_ptr<Surface> goalnode;
 	std::shared_ptr<Surface> startnode;
 	std::shared_ptr<Surface> pathnode;
-	std::shared_ptr<Surface> blockade;
+	std::shared_ptr<Surface> blockednode;
 	//makes a surface called image
 
 	std::shared_ptr<Surface> screen;
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 	pathnode = Surface::loadBmp("path.bmp");
 	goalnode = Surface::loadBmp("goalnode.bmp");
 	startnode = Surface::loadBmp("startnode.bmp");
-	blockade = Surface::loadBmp("blockade.bmp");
+	blockednode = Surface::loadBmp("blockade.bmp");
 
 	int imageHeight = 50;
 	int imageWidth = 50;
@@ -63,6 +63,7 @@ int main(int argc, char *argv[])
 	Node* goal;
 	Node* start;
 	std::vector<Node*> path;
+	std::vector<Node*> blockades;
 
 	for (size_t y = 0; y < Grid_Height; y++)
 	{
@@ -188,6 +189,11 @@ int main(int argc, char *argv[])
 		curr = curr->GetParent();
 	}
 
+	for (size_t i = 0; i < blockades.size(); i++)
+	{
+		blockades.at(i)->SetImage(blockednode);
+	}
+
 	for (size_t i = 0; i < path.size(); i++)
 	{
 		path.at(i)->SetImage(pathnode);
@@ -206,7 +212,7 @@ int main(int argc, char *argv[])
 #ifdef _MSC_VER
 	Sleep(3000);
 #else
-	sleep(3);
+	sleep(30);
 #endif
 
 	return 0;

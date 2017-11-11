@@ -1,6 +1,7 @@
 //Class to add the function of the Breadth First Search Algorithm to the program for actors to find a path to the desired goal
 
 #include "BreadthFirstAlgorithm.h"
+#include <time.h>
 
 void BreadthFirst::BreadthFirstSearch(/*std::vector<Node> search,*/ Node* start, Node* goal)
 {
@@ -14,11 +15,25 @@ void BreadthFirst::BreadthFirstSearch(/*std::vector<Node> search,*/ Node* start,
 	while (!Open.empty() || goalnode)
 	{
 		Node* currentNode = Open.front();
+		int randBlockade = 0;
+		
 
 		for (size_t i = 0; i < currentNode->neighbours.size(); i++)
 		{
 			bool found = false;
 			Node* N = currentNode->neighbours.at(i);
+			
+			for (size_t i = 0; i < 50; i++)
+			{
+				srand(time(NULL));
+				randBlockade = rand() % 49 + 0;
+
+				
+				Blockade.push_back(N);
+				
+
+			}
+			
 			for (std::vector<Node*>::iterator count = Open.begin(); count != Open.end(); count++)
 			{
 				if (*count == N)
