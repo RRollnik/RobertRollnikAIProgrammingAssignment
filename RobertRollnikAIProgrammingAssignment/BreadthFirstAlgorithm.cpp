@@ -21,18 +21,15 @@ void BreadthFirst::BreadthFirstSearch(/*std::vector<Node> search,*/ Node* start,
 		for (size_t i = 0; i < currentNode->neighbours.size(); i++)
 		{
 			bool found = false;
+			//N is a pointer to the current node
 			Node* N = currentNode->neighbours.at(i);
-			
-			for (size_t i = 0; i < 50; i++)
+		
+			if (((i <= 0) && (i >= 25 )) && (i <= 60) && (i >= 250))
 			{
-				srand(time(NULL));
-				randBlockade = rand() % 49 + 0;
-
-				
 				Blockade.push_back(N);
-				
-
 			}
+				
+				
 			
 			for (std::vector<Node*>::iterator count = Open.begin(); count != Open.end(); count++)
 			{
@@ -76,3 +73,5 @@ void BreadthFirst::BreadthFirstSearch(/*std::vector<Node> search,*/ Node* start,
 		Open.erase(Open.begin());
 	}
 }
+
+

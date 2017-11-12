@@ -212,7 +212,7 @@ int main(int argc, char *argv[])
 #ifdef _MSC_VER
 	Sleep(3000);
 #else
-	sleep(30);
+	sleep(3);
 #endif
 
 	return 0;
