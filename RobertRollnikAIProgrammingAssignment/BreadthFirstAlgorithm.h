@@ -16,7 +16,7 @@ private:
 	std::vector<Node*> Path;
 	std::vector<Node*> Open;
 	std::vector<Node*> Close;
-	std::vector<Node*> Blockade;
+	//std::vector<Node*> Blockade;
 
 	//Boolean variable to check if the goal node has been reached or not
 	bool goalnode = false;

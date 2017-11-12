@@ -1,6 +1,6 @@
 #include "AttackState.h"
 #include "StateManager.h"
-#include "JumpState.h"
+#include "IdleState.h"
 
 #include <Windows.h>
 
@@ -17,7 +17,7 @@ void AttackState::update()
 	{
 		std::cout << "Out of ammo, changing state to jump..." << std::endl;
 		Sleep(1000);
-		manager->setState(new JumpState(manager));
+		manager->setState(new IdleState(manager));
 	}
 	else
 	{

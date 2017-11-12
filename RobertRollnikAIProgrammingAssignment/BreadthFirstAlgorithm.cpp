@@ -24,10 +24,11 @@ void BreadthFirst::BreadthFirstSearch(/*std::vector<Node> search,*/ Node* start,
 			//N is a pointer to the current node
 			Node* N = currentNode->neighbours.at(i);
 		
+			/*
 			if (((i <= 0) && (i >= 25 )) && (i <= 60) && (i >= 250))
 			{
 				Blockade.push_back(N);
-			}
+			}*/
 				
 				
 			

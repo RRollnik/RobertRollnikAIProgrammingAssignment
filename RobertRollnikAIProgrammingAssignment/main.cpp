@@ -17,6 +17,12 @@
 #include "Node.h"
 #include "BreadthFirstAlgorithm.h"
 
+#include "State.h"
+#include "IdleState.h"
+
+#include "StateManager.h"
+#include "AttackState.h"
+
 #define GRID_HEIGHT 25
 #define GRID_WIDTH 25
 
@@ -64,6 +70,9 @@ int main(int argc, char *argv[])
 	Node* start;
 	std::vector<Node*> path;
 	std::vector<Node*> blockades;
+	
+	StateManager manager;
+	manager.setState(new AttackState(&manager));
 
 	for (size_t y = 0; y < Grid_Height; y++)
 	{
@@ -206,8 +215,13 @@ int main(int argc, char *argv[])
 	{
 		nodes.at(i).Draw(screen);
 	}
-
+	
 	screen->flip();
+
+	while (true)
+	{
+		manager.update();
+	}
 
 #ifdef _MSC_VER
 	Sleep(3000);
