@@ -71,8 +71,11 @@ int main(int argc, char *argv[])
 	std::vector<Node*> path;
 	std::vector<Node*> blockades;
 	
-	StateManager manager;
-	manager.setState(new AttackState(&manager));
+	StateManager enemie1;
+	enemie1.setState(new AttackState(&enemie1));
+
+	StateManager enemie2;
+	enemie2.setState(new AttackState(&enemie2));
 
 	for (size_t y = 0; y < Grid_Height; y++)
 	{
@@ -180,12 +183,13 @@ int main(int argc, char *argv[])
 
 
 	
+	
 	srand(time(NULL));
-	randGoal = rand() % 349 + 0;
 	randStart = rand() % 349 + 0;
 
-	goal = &nodes.at(randGoal);
+	
 	start = &nodes.at(randStart);
+	goal = &nodes.at(SDL_BUTTON_LEFT);
 
 	searchpath.BreadthFirstSearch(start, goal);
 
@@ -198,10 +202,6 @@ int main(int argc, char *argv[])
 		curr = curr->GetParent();
 	}
 
-	for (size_t i = 0; i < blockades.size(); i++)
-	{
-		blockades.at(i)->SetImage(blockednode);
-	}
 
 	for (size_t i = 0; i < path.size(); i++)
 	{
@@ -218,10 +218,13 @@ int main(int argc, char *argv[])
 	
 	screen->flip();
 
-	while (true)
+
+	for(int i = 0; i < 1100; i++)
 	{
-		manager.update();
+		enemie1.update();
+		enemie2.update();
 	}
+
 
 #ifdef _MSC_VER
 	Sleep(3000);

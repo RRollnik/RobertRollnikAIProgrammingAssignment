@@ -22,15 +22,7 @@ void BreadthFirst::BreadthFirstSearch(/*std::vector<Node> search,*/ Node* start,
 		{
 			bool found = false;
 			//N is a pointer to the current node
-			Node* N = currentNode->neighbours.at(i);
-		
-			/*
-			if (((i <= 0) && (i >= 25 )) && (i <= 60) && (i >= 250))
-			{
-				Blockade.push_back(N);
-			}*/
-				
-				
+			Node* N = currentNode->neighbours.at(i);				
 			
 			for (std::vector<Node*>::iterator count = Open.begin(); count != Open.end(); count++)
 			{
