@@ -27,13 +27,13 @@
     <ClInclude Include="AttackState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="JumpState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StateManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,13 +53,13 @@
     <ClCompile Include="AttackState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="JumpState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="State.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StateManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Idle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
